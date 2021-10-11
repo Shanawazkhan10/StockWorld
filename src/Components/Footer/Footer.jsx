@@ -43,6 +43,8 @@ export default function LabelBottomNavigation() {
         label="Favorites"
         value="favorites"
         icon={<FavoriteIcon />}
+        component={Link}
+        to="/Favourite"
       />
       {/* <BottomNavigationAction
         label="Nearby"

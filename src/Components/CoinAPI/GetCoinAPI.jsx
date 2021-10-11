@@ -49,7 +49,7 @@ const CoinList = (props) => {
       {CoinList &&
         CoinList.map((item) => (
           <ListItem
-            onClick={console.log("HELLO WORLD")}
+            // onClick={console.log("HELLO WORLD")}
             style={{ height: 55 }}
             className="listItem"
             key={item.name}

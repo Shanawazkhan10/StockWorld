@@ -10,18 +10,41 @@ import CircularProgress from "@mui/material/CircularProgress";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import "./CryptoChart.css";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addFav, deleteFav } from "../Components/Redux/Action";
+import cuid from "cuid";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 const Cryptochart = () => {
   let history = useHistory();
   const { id } = useParams();
   // const baseData =
-
+  const dispatch = useDispatch();
   const [UrlData, setUrlData] = useState(id);
   const [TimeInterval, setTimeInterval] = useState(1);
   const [CryptoData, setCryptoData] = useState("");
+  const [starColor, setStarColor] = useState("");
+  const [deleteIcon, setdeleteIcon] = useState("");
   const [isLoading, setisLoading] = useState(false);
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  const [dataStore, setDataStore] = useState("");
+  const [storeData, setstoreData] = useState(
+    useSelector((state) => state.FavList.data.map((el) => el))
+  );
+  useEffect(() => {
+    console.log(storeData);
+  }, [storeData]);
+  const handleClick = (e) => {
+    e.preventDefault();
+    setDataStore(dispatch(addFav({ crypto: UrlData, id: cuid() })));
+    setStarColor("yellow");
+  };
+  const handleDelete = (e) => {
+    let obj = storeData.find((o) => o.crypto === UrlData);
+    console.log(obj.id);
+    e.preventDefault();
+    setDataStore(dispatch(deleteFav(obj.id)));
+    setdeleteIcon("red");
+  };
   useEffect(() => {
     setisLoading(true);
     const unsuscribe = async () => {
@@ -67,6 +90,19 @@ const Cryptochart = () => {
   return (
     <div>
       <Container>
+        <div>
+          <h4>ADD AS FAV </h4>{" "}
+          <StarOutlineIcon
+            className="star"
+            style={{ color: starColor, borderColor: "1 solid gray" }}
+            onClick={(e) => handleClick(e)}
+          />
+          <DeleteOutlineIcon
+            className="star"
+            style={{ color: deleteIcon, borderColor: "1 solid gray" }}
+            onClick={(e) => handleDelete(e)}
+          />
+        </div>
         <Row className="div-container">
           {isLoading === false ? (
             <Col>

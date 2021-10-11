@@ -12,6 +12,7 @@ export const WatchListContextProvider = (props) => {
     "tether",
     "solana",
     "polkadot",
+    "filecoin",
     // "xrp",
     "pologon",
     "algorand",

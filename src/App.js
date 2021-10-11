@@ -6,6 +6,7 @@ import { WatchListContextProvider } from "./Components/context/watchList";
 import Cryptochart from "./Screens/Cryptochart";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
+import Favourite from "./Screens/Favourite/Favourite";
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/" component={HomePage}></Route>
+            <Route exact path="/Favourite" component={Favourite}></Route>
             <Route path="/Cryptochart/:id" component={Cryptochart}></Route>
           </Switch>
           <Footer />

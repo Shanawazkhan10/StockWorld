@@ -4,6 +4,7 @@ import { WatchListContext } from "../Components/context/watchList";
 
 const HomePage = () => {
   const { cryptoCoin } = useContext(WatchListContext);
+  console.log(cryptoCoin);
   return (
     <div>
       <CoinList data={cryptoCoin} />

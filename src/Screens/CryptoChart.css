@@ -4,3 +4,6 @@
 .div-container {
   height: 400px;
 }
+.star {
+  border-color: 1px solid black;
+}
